@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="popup.css" />
+<title>Echo-Focus</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Echo-Focus</h2>
+    <label>Sites to block (comma separated)</label>
+    <input id="sites" placeholder="facebook.com, youtube.com" />
+
+    <label>Duration (minutes)</label>
+    <input id="minutes" type="number" min="1" value="25" />
+
+    <div class="controls">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+    </div>
+
+    <div id="status" class="status">Not running</div>
+  </div>
+<script src="popup.js"></script>
+</body>
+</html>
