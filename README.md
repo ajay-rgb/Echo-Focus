@@ -36,20 +36,6 @@ Requirements
 
 Chrome 88+ (or Chromium-based browser supporting MV3).
 
-Project structure
-echo-focus/
-├─ manifest.json            # MV3 manifest (permissions, content scripts, background service_worker)
-├─ background.js            # service worker: state, alarms, message handling
-├─ content_script.js        # overlay + countdown + robust messaging
-├─ popup.html               # popup UI
-├─ popup.js                 # popup logic: start/stop/getState
-├─ popup.css                # popup styles
-├─ icons/
-│  ├─ icon16.png
-│  ├─ icon48.png
-│  └─ icon128.png
-└─ README.md                # this file
-
-Built by you (replace with your name).
+---
 
 Inspired by classic productivity tools and the Pomodoro technique.
