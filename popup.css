@@ -1,9 +1,201 @@
-body{font-family:Inter, system-ui, Arial; margin:0;padding:12px;width:320px}
-.container h2{margin:0 0 8px}
-label{display:block;margin-top:10px;font-size:12px;color:#444}
-input{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
-.controls{margin-top:10px;display:flex;gap:8px}
-button{flex:1;padding:8px;border-radius:6px;border:none;cursor:pointer}
-#start{background:#0b79ff;color:white}
-#stop{background:#eee}
-.status{margin-top:12px;font-size:13px;color:#666}
+:root {
+  --bg: #000000;
+  --card: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  --glass: rgba(255, 255, 255, 0.04);
+  --primary: #0fce75; /* cyan-400 */
+  --muted: #98a0ad;
+  --accent: #7c3aed; /* purple */
+  --radius: 12px;
+  --gap: 10px;
+  --shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial;
+  color: #e6eef8;
+}
+body {
+  background: #000000;
+  min-width: 310px;
+  padding: 5px;
+  border-radius: 12px;
+
+
+}
+
+.card {
+  width: 300px;
+  background: rgb(35, 35, 35);
+  border-radius: 12px;
+  padding: 12px;
+  /* box-shadow: var(--shadow); */
+  /* backdrop-filter: blur(6px) saturate(1.08); */
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  color: blue;
+}
+.app-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: aliceblue;
+}
+.app-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.status {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.644);
+  color: inherit;
+}
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.08);
+  border-color: #0fce75;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.col {
+  flex: 1;
+}
+.input-small {
+  width: 100%;
+  max-width: 84px;
+}
+
+.actions {
+  display: flex;
+  margin-top: 10px;
+  
+  flex-direction: column;
+  gap: 8px;
+}
+.btn {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn:hover{
+  scale: 1.02;
+  background: #00ff88;
+  color: #000000
+}
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), #0fce75);
+  color: #000000;
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgb(255, 66, 66,0.5);
+  color: var(--muted);
+}
+.btn-ghost:hover {
+  background: rgb(255, 66, 66);
+  color: WHITE;
+}
+
+.progress-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.ring {
+  width: 68px;
+  height: 68px;
+}
+.ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 12;
+}
+.ring-fg {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 12;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 0.35s linear;
+}
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+}
+.countdown-text {
+  font-weight: 700;
+  font-size: 18px;
+}
+.countdown-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.card-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+.muted {
+  color: var(--muted);
+  font-size: 11px;
+}

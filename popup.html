@@ -1,27 +1,56 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="stylesheet" href="popup.css" />
-<title>Echo-Focus</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css" />
+  <title>Echo-Focus</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Echo-Focus</h2>
-    <label>Sites to block (comma separated)</label>
-    <input id="sites" placeholder="facebook.com, youtube.com" />
+  <div class="card">
+    <header class="card-header">
+      <div class="title">
+        <img src="icons/icon48.png" alt="Echo-Focus" class="logo"/>
+        <div>
+          <div class="app-name">Echo-Focus</div>
+        </div>
+      </div>
+      <div id="status" class="status">Not running</div>
+    </header>
 
-    <label>Duration (minutes)</label>
-    <input id="minutes" type="number" min="1" value="25" />
+    <main class="card-body">
+      <label class="label">Sites to block</label>
+      <input id="sites" class="input" placeholder="youtube.com, facebook.com" />
 
-    <div class="controls">
-      <button id="start">Start</button>
-      <button id="stop">Stop</button>
-    </div>
+      <div class="row">
+        <div class="col">
+          <label class="label">Duration (mins)</label>
+          <input id="minutes" class="input input-small" type="number" min="1" value="25" />
+        </div>
 
-    <div id="status" class="status">Not running</div>
+        <div class="col actions">
+          <button id="start" class="btn btn-primary">Start</button>
+          <button id="stop" class="btn btn-ghost">Stop</button>
+        </div>
+      </div>
+
+      <div class="progress-row">
+        <svg id="progressRing" viewBox="0 0 120 120" class="ring">
+          <circle r="54" cx="60" cy="60" class="ring-bg"></circle>
+          <circle r="54" cx="60" cy="60" class="ring-fg" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
+        </svg>
+        <div class="countdown">
+          <div id="countdownText" class="countdown-text">00:00</div>
+          <div class="countdown-sub">time remaining</div>
+        </div>
+      </div>
+    </main>
+
+    
   </div>
-<script src="popup.js"></script>
+
+  <script src="popup.js"></script>
 </body>
 </html>
