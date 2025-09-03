@@ -1,4 +1,5 @@
 const STATE_KEY = 'echo_focus_state';
+const HISTORY_KEY = 'echo_focus_history';
 
 async function getState() {
   return new Promise(resolve => {
@@ -13,6 +14,23 @@ async function setState(state) {
     chrome.storage.local.set({[STATE_KEY]: state}, () => resolve());
   });
 }
+
+async function getHistory() {
+  return new Promise(resolve => {
+    chrome.storage.local.get([HISTORY_KEY], data => {
+      resolve(data[HISTORY_KEY] || []);
+    });
+  });
+}
+
+async function saveHistory(session) {
+    const history = await getHistory();
+    history.push(session);
+    return new Promise(resolve => {
+        chrome.storage.local.set({[HISTORY_KEY]: history}, () => resolve());
+    });
+}
+
 
 function domainFromUrl(url) {
   try {
@@ -31,8 +49,9 @@ async function notifyTabsToUpdate() {
 }
 
 async function startSession(minutes, sites) {
-  const endTime = Date.now() + minutes * 60 * 1000;
-  const state = {active: true, endTime, sites};
+  const now = Date.now();
+  const endTime = now + minutes * 60 * 1000;
+  const state = {active: true, startTime: now, endTime, sites};
   await setState(state);
   // alarm when finished
   chrome.alarms.create('echo_focus_end', {when: endTime});
@@ -40,6 +59,14 @@ async function startSession(minutes, sites) {
 }
 
 async function stopSession() {
+  const s = await getState();
+  if (s.active) {
+      await saveHistory({
+          startTime: s.startTime,
+          endTime: Date.now(),
+          sites: s.sites
+      });
+  }
   const state = {active:false, endTime:0, sites:[]};
   await setState(state);
   chrome.alarms.clear('echo_focus_end');
@@ -63,7 +90,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     } else if (msg && msg.type === 'getState') {
       const s = await getState();
       sendResponse({ok:true, state:s});
-    } else {
+    } else if (msg.type === 'getHistory') {
+        const history = await getHistory();
+        sendResponse({ ok: true, history: history });
+    }
+    else {
       sendResponse({ok:false, error:'unknown'});
     }
   })();

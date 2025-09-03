@@ -1,6 +1,6 @@
 const $ = id => document.getElementById(id);
 
-const RADIUS = 54; 
+const RADIUS = 54;
 const CIRC = 2 * Math.PI * RADIUS;
 
 const setRing = (pct) => {
@@ -59,9 +59,13 @@ $('start').addEventListener('click', async () => {
   await refreshUI();
 });
 
-$('stop').addEventListener('click', async () => {
+$('stop').addEventListener('click', async ()_ => {
   await stop();
   await refreshUI();
+});
+
+$('report').addEventListener('click', () => {
+  chrome.tabs.create({ url: 'report.html' });
 });
 
 // initialize SVG ring stroke length
